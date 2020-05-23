@@ -49,6 +49,8 @@ class RegisterDomain extends AbstractRequest
     protected string $ns1;
 
     protected string $ns2;
+    protected string $sld;
+    protected string $tld;
 
     public function __construct(array $inputs)
     {
@@ -57,10 +59,10 @@ class RegisterDomain extends AbstractRequest
         $this->validate($this->required, $inputs);
 
         $domain = $inputs['domain'];
-        $sidPosition = strpos($domain, '.');
+        $extract = $this->domainExtraction($domain);
 
-        $this->sld = substr($domain, 0, $sidPosition);
-        $this->tld = substr($domain, $sidPosition + 1);
+        $this->sld = $extract['sld'];
+        $this->tld = $extract['tld'];
         $this->ns1 = config('domain.ns1');
         $this->ns2 = config('domain.ns2');
 

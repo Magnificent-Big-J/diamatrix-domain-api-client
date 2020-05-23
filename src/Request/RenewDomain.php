@@ -15,10 +15,10 @@ class RenewDomain extends AbstractRequest
     {
         parent::__construct();
 
-        $sidPosition = strpos($domain, '.');
+        $extract = $this->domainExtraction($domain);
 
-        $this->sld = substr($domain, 0, $sidPosition);
-        $this->tld = substr($domain, $sidPosition + 1);
+        $this->sld = $extract['sld'];
+        $this->tld = $extract['tld'];
     }
 
     public function getResponseObject(string $content): ApiResponseInterface

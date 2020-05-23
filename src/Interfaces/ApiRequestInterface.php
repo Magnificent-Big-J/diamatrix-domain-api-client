@@ -11,4 +11,5 @@ interface ApiRequestInterface
     public function getEndPoint(): string;
     public function getRequestParameters(): array;
     public function getResponseObject(string $content): ApiResponseInterface;
+    public function domainExtraction(string  $domain): array;
 }

@@ -45,4 +45,12 @@ abstract class AbstractRequest implements ApiRequestInterface
     {
         return $this->endpoint;
     }
+    public function domainExtraction(string $domain): array
+    {
+        $sidPosition = strpos($domain, '.');
+
+        return [ 'sld' => substr($domain, 0, $sidPosition),
+                 'tld' => substr($domain, $sidPosition + 1)
+        ];
+    }
 }
